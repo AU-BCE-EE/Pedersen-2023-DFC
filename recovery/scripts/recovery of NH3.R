@@ -103,5 +103,3 @@ dat$cum.emis.sample <- dat$conc.start * 0.0515 - dat$conc.end * 0.0515
 
 # COMPARISON OF NUMBERS: 
 dat$recovery <- dat$cum.emis.Picarro / dat$cum.emis.sample * 100
-
-
