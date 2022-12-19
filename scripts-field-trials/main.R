@@ -7,6 +7,12 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 source('functions.R')
 source('packages.R')
-
-source('exp1.R')
+source('load.R')
+source('subset_and_clean.R')
+source('bLS_dataframe.R')
+source('DFC_dataframe.R')
+source('temp_sensors_dataframe.R')
+source('subset_weather.R')
+source('mearge.R')
+source('plot.R')
 
