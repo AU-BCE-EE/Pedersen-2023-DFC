@@ -22,7 +22,7 @@ bb <- new.bb
 
 # fitting dataframe to dd (DFC dataframe)
 bb$id <- '1'
-bb$meas.meth <- 'bLS'
+bb$treat <- 'bLS'
 
 # from myg * s^-1* m^-2 to g * min^-1* m^-2
 bb$flux <- as.numeric(bb$emis_NH3_gap) * 10^-6 * 60
@@ -38,4 +38,4 @@ bb$id <- 'NA'
 bbw <- bb
 
 # subsetting: 
-bb <- bb[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis', 'tk', 'app.meth', 'meas.meth')]
+bb <- bb[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis', 'tk', 'app.meth', 'treat')]

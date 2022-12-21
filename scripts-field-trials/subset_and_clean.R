@@ -1,9 +1,9 @@
 
 # DFC
-ddA <- dA[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis')]
-ddB <- dB[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis')]
-ddC_in <- dC_in[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis')]
-ddC_th <- dC_th[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis')]
+ddA <- dA[, c('elapsed.time', 'date.time', 'id', 'treat', 'flux', 'cum.emis')]
+ddB <- dB[, c('elapsed.time', 'date.time', 'id', 'treat', 'flux', 'cum.emis')]
+ddC_in <- dC_in[, c('elapsed.time', 'date.time', 'treat', 'id', 'flux', 'cum.emis')]
+ddC_th <- dC_th[, c('elapsed.time', 'date.time', 'treat', 'id', 'flux', 'cum.emis')]
 
 # Add trial keys and names for plots
 ddA$tk <- 'A'; ddB$tk <- 'B'; ddC_in$tk <- 'C'; ddC_th$tk <- 'C';
@@ -13,7 +13,6 @@ ddA$app.meth <- 'TH'; ddB$app.meth <- 'TH'; ddC_th$app.meth <- 'TH'; ddC_in$app.
 
 # combining
 dd <- rbind(ddA, ddB, ddC_in, ddC_th)
-dd$meas.meth <- 'DFC'
 
 
 # bLS
