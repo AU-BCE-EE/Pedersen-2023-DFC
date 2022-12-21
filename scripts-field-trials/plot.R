@@ -77,11 +77,11 @@ ggsave2x('../plots-field-trials/weather', height = 3, width = 7)
 
 
 # temperature sensors
-ggplot(dt, aes(elapsed.time, temp, color = id)) + 
-  geom_line() + 
-  geom_line(weather[weather$what == 'Temperature'], aes(elapsed.time, num)) +
+dt$elapsed.time <- as.numeric(dt$elapsed.time)
+
+ggplot() + 
+  geom_line(dt, aes(elapsed.time, temp, color = id)) + 
   facet_wrap(~ tk) + 
-  theme_bw()
-
-
+  theme_bw() + 
+  geom_point(data = weather, aes(elapsed.time, num))
 
