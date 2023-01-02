@@ -4,15 +4,8 @@
 
 # recovery test done on DC prototype (MAG project) on the 14th of Oct 2022
 
-rm(list = ls())
-
-dirname(rstudioapi::getActiveDocumentContext()$path)
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-source('packages.R')
-
 # reading in data, ordering and adding elapse.time 
-dat <- read.table('../data/recovery of NH3.txt', header = TRUE, fill = TRUE)
+dat <- read.table('../data/recovery.txt', header = TRUE, fill = TRUE)
 
 dat$date.time <- paste(dat$DATE, dat$TIME)
 dat$date.time<-ymd_hms(dat$date.time)

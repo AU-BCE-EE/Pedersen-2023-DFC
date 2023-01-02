@@ -112,12 +112,14 @@ ggsave2x('../plots-field-trials/cum_emis_mn_perc_l', height = 7, width = 10)
 # Weather 
 weather$what <- mapvalues(weather$what, from = 'airT', to = 'Temperature')
 weather$what <- mapvalues(weather$what, from = 'WS', to = 'Wind speed')
+weather$what <- mapvalues(weather$what, from = 'prec', to = 'Precipitation')
 weather <- weather[weather$elapsed.time <= 120, ]
 
 ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) + 
   geom_line() + 
   facet_wrap(~ tk, scale = 'free') + 
   theme_bw() + 
+  scale_color_brewer(palette = 'Set1') +
   xlab('Time after slurry application [hours]') + 
   ylab(expression(paste("Temperature [ ",degree,"C] / Wind speed [ m ", s^-1, ']'))) +
   theme(legend.position = 'bottom', legend.title = element_blank())

@@ -15,5 +15,6 @@ source('DFC_dataframe.R')
 source('temp_sensors_dataframe.R')
 source('subset_weather.R')
 source('mearge.R')
+source('subset_stats.R')
 source('plot.R')
 

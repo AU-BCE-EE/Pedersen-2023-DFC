@@ -1,5 +1,5 @@
 
-# DFC
+### DFC
 ddA <- dA[, c('elapsed.time', 'date.time', 'id', 'treat', 'flux', 'cum.emis')]
 ddB <- dB[, c('elapsed.time', 'date.time', 'id', 'treat', 'flux', 'cum.emis')]
 ddC_in <- dC_in[, c('elapsed.time', 'date.time', 'treat', 'id', 'flux', 'cum.emis')]
@@ -15,7 +15,7 @@ ddA$app.meth <- 'TH'; ddB$app.meth <- 'TH'; ddC_th$app.meth <- 'TH'; ddC_in$app.
 dd <- rbind(ddA, ddB, ddC_in, ddC_th)
 
 
-# bLS
+### bLS
 bbB <- bB[, c('st_date', 'st_time', 'emis_NH3_gap', 'airT', 'WS')]
 bbC_in <- bC_in[, c('st_date', 'st_time', 'emis_NH3_gap', 'airT', 'WS')]
 bbC_th <- bC_th[, c('st_date', 'st_time', 'emis_NH3_gap', 'airT', 'WS')]
@@ -30,9 +30,8 @@ bbB$app.meth <- 'TH'; bbC_th$app.meth <- 'TH'; bbC_in$app.meth <- 'IN';
 bb <- rbind(bbB, bbC_in, bbC_th)
 
 
-# temperature sensors 
+### temperature sensors 
 # adding exp id
-
 dtA$id <- 'A'; dtB$id <- 'B'; dtC$id <- 'C'; dtD$id <- 'D'
 
 dt <- rbind(dtA, dtB, dtC, dtD)
