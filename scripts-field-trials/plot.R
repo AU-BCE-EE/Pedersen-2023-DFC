@@ -92,10 +92,10 @@ ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) +
   theme_bw() + 
   scale_color_brewer(palette = 'Set1') +
   xlab('Time after slurry application (hours)') + 
-  ylab(expression(paste("Temperature ( ",degree,"C) / Wind speed ( m ", s^-1, ') / Precipitation [mm]'))) +
+  ylab(expression(paste("Temperature ( ",degree,"C) / Wind speed ( m ", s^-1, ') / Precipitation (mm)'))) +
   theme(legend.position = 'bottom', legend.title = element_blank()) + 
   ylim(0, 13)
-ggsave2x('../plots-field-trials/weather', height = 4, width = 7)
+ggsave2x('../plots-field-trials/weather', height = 6, width = 7)
 
 
 # # temperature sensors
