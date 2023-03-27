@@ -18,7 +18,7 @@ ggplot(df1, aes(elapsed.time, flux, color = in1)) +
   theme_bw() + 
   scale_color_brewer(palette = 'Set1') + 
   ylab(expression(paste(NH[3]-N, '   flux (g  ',  min^-1, ' ', m^-2, ')'))) + 
-  xlab('Time after slurry application (hours)') + 
+  xlab('Time after digestate application (hours)') + 
   theme(legend.position = 'bottom', legend.title = element_blank())
 ggsave2x('../plots-field-trials/flux', height = 4, width = 7) 
 
@@ -29,7 +29,7 @@ ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
   theme_bw() + 
   scale_color_brewer(palette = 'Set1') + 
   ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
-  xlab('Time after slurry application (hours)') + 
+  xlab('Time after digestate application (hours)') + 
   theme(legend.position = 'bottom', legend.title = element_blank())
 ggsave2x('../plots-field-trials/flux_perc', height = 4, width = 7) 
 
@@ -91,7 +91,7 @@ ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) +
   facet_wrap(~ tk, scale = 'free') + 
   theme_bw() + 
   scale_color_brewer(palette = 'Set1') +
-  xlab('Time after slurry application (hours)') + 
+  xlab('Time after digestate application (hours)') + 
   ylab(expression(paste("Temperature ( ",degree,"C) / Wind speed ( m ", s^-1, ') / Precipitation (mm)'))) +
   theme(legend.position = 'bottom', legend.title = element_blank()) + 
   ylim(0, 13)
