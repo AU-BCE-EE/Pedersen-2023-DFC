@@ -60,7 +60,7 @@ ggsave2x('../plots-field-trials/flux_perc_l', height = 7, width = 10)
 
 # Cum emis
 ggplot(df1, aes(elapsed.time, cum.emis, color = in1)) + 
-  geom_point() + 
+  geom_point(shape = 1) + 
   geom_line(aes(group = interaction(tk, app.meth, id))) + 
   facet_wrap(~ tk, scale = 'free') + 
   theme_bw() + 
@@ -72,7 +72,7 @@ ggsave2x('../plots-field-trials/cum_emis_s', height = 3, width = 7)
 ggsave2x('../plots-field-trials/cum_emis_l', height = 7, width = 10)
 
 ggplot(df2, aes(elapsed.time, cum.emis.mn, fill = in2, color = in2)) + 
-  geom_point() + 
+  geom_point(shape = 1) + 
   geom_line(aes(group = in2)) + 
   geom_ribbon(aes(ymin = cum.emis.mn - cum.emis.sd, ymax = cum.emis.mn + cum.emis.sd, group = in2), alpha = 0.3, color = NA) + 
   facet_wrap(~ tk, scale = 'free') + 
@@ -85,7 +85,7 @@ ggsave2x('../plots-field-trials/cum_emis_mn_s', height = 3, width = 7)
 ggsave2x('../plots-field-trials/cum_emis_mn_l', height = 7, width = 10)
 
 ggplot(df1, aes(elapsed.time, cum.emis.perc, color = in1)) + 
-  geom_point() + 
+  geom_point(shape = 1) + 
   geom_line(aes(group = interaction(tk, app.meth, id))) + 
   facet_wrap(~ tk, scale = 'free') + 
   theme_bw() + 
@@ -97,7 +97,7 @@ ggsave2x('../plots-field-trials/cum_emis_perc_s', height = 3, width = 7)
 ggsave2x('../plots-field-trials/cum_emis_perc_l', height = 7, width = 10)
 
 ggplot(df2, aes(elapsed.time, cum.emis.mn.perc, fill = in2, color = in2)) + 
-  geom_point() + 
+  geom_point(shape = 1) + 
   geom_line(aes(group = in2)) + 
   geom_ribbon(aes(ymin = cum.emis.mn.perc - cum.emis.sd.perc, ymax = cum.emis.mn.perc + cum.emis.sd.perc, group = in2), alpha = 0.3, color = NA) + 
   facet_wrap(~ tk, scale = 'free') + 
