@@ -14,6 +14,8 @@ df1 <- df1[! c(df1$tk == 'B' & df1$elapsed.time >= 120), ]
 
 # adding slurry data and calculating flux and cum_emis as percentage of TAN
 df1 <- right_join(df1, sl.summ, by = 'tk')
+# changing the app.rate to 6.0 for tk = A and treat = WT (app.rate was different for WT and DFC)
+df1[df1$tk == 'A' & df1$treat == 'WT', ]$app.rate <- 6.9825
 df1$flux.perc <- df1$flux / df1$app.rate * 100
 df1$cum.emis.perc <- df1$cum.emis / df1$app.rate * 100
 
@@ -35,6 +37,8 @@ df2 <- rbind(bb2, dd.summ)
 
 # adding slurry data and calculating flux and cum_emis as percentage of TAN
 df2 <- right_join(df2, sl.summ, by = 'tk')
+# changing the app.rate to 6.0 for tk = A and treat = WT (app.rate was different for WT and DFC)
+df2[df2$tk == 'A' & df2$treat == 'WT', ]$app.rate <- 6.9825
 df2$flux.mn.perc <- df2$flux.mn / df2$app.rate * 100
 df2$flux.sd.perc <- df2$flux.sd / df2$app.rate * 100
 df2$cum.emis.mn.perc <- df2$cum.emis.mn / df2$app.rate * 100

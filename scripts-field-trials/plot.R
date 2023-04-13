@@ -34,29 +34,6 @@ ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
 ggsave2x('../plots-field-trials/flux_perc', height = 4, width = 7) 
 
 # Cum emis
-ggplot(df1, aes(elapsed.time, cum.emis, color = in1)) + 
-  geom_point(size = 0.5) + 
-  geom_line(aes(group = interaction(tk, app.meth, id)), size = 0.5) + 
-  facet_wrap(~ tk, scale = 'free') + 
-  theme_bw() + 
-  scale_color_brewer(palette = 'Set1') + 
-  ylab(expression(paste('Cumulative  ', NH[3]-N, '  (g  ', m^-2, ')'))) +
-  xlab('Time after digestate application (hours)') + 
-  theme(legend.title = element_blank(), legend.position = 'bottom')
-ggsave2x('../plots-field-trials/cum_emis', height = 4, width = 7)
-
-ggplot(df2, aes(elapsed.time, cum.emis.mn, fill = in2, color = in2)) + 
-  geom_point(size = 0.5) + 
-  geom_line(aes(group = in2), size = 0.5) + 
-  geom_ribbon(aes(ymin = cum.emis.mn - cum.emis.sd, ymax = cum.emis.mn + cum.emis.sd, group = in2), alpha = 0.3, color = NA) + 
-  facet_wrap(~ tk, scale = 'free') + 
-  theme_bw() + 
-  scale_color_brewer(palette = 'Set1') + scale_fill_brewer(palette = 'Set1') + 
-  ylab(expression(paste('Cumulative  ', NH[3]-N, '  (g  ', m^-2, ')'))) +
-  xlab('Time after digestate application (hours)') + 
-  theme(legend.title = element_blank(), legend.position = 'bottom')
-ggsave2x('../plots-field-trials/cum_emis_mn', height = 4, width = 7)
-
 ggplot(df1, aes(elapsed.time, cum.emis.perc, color = in1)) + 
   geom_point(size = 0.5) + 
   geom_line(aes(group = interaction(tk, app.meth, id)), size = 0.5) + 
