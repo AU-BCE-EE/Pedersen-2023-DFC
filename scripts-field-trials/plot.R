@@ -33,6 +33,29 @@ ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
   theme(legend.position = 'bottom', legend.title = element_blank())
 ggsave2x('../plots-field-trials/flux_perc', height = 4, width = 7) 
 
+# conference poster plot
+df1$tkA <- df1$tk
+df1$tkA <- mapvalues(df1$tkA, from = 'A', to = 'A: Manual')
+df1$tkA <- mapvalues(df1$tkA, from = 'B', to = 'B: 30-m boom')
+df1$tkA <- mapvalues(df1$tkA, from = 'C', to = 'C: 3-m boom')
+
+df1$app.methA <- df1$app.meth
+df1$app.methA <- mapvalues(df1$app.methA, from = 'Trailing hose', to = 'TH')
+df1$app.methA <- mapvalues(df1$app.methA, from = 'Injection', to = 'IN')
+in1A <- factor(interaction(df1$app.methA, df1$treat))
+in1A <- gsub('\\.', ' ', in1A)
+
+ggplot(df1, aes(elapsed.time, flux.perc, color = in1A)) + 
+  geom_point(size = 0.5) + 
+  geom_line(aes(group = interaction(tk, app.meth, id))) + 
+  facet_wrap(~ tkA, scale = 'free') + 
+  theme_bw() + 
+  scale_color_brewer(palette = 'Set1') + 
+  ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
+  xlab('Time after slurry digestate application (hours)') + 
+  theme(legend.position = 'bottom', legend.title = element_blank())
+ggsave2x('../plots-field-trials/flux_perc_EGU', height = 3, width = 5) 
+
 # Cum emis
 ggplot(df1, aes(elapsed.time, cum.emis.perc, color = in1)) + 
   geom_point(size = 0.5) + 
