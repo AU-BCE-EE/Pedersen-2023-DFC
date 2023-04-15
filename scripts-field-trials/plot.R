@@ -42,8 +42,10 @@ df1$tkA <- mapvalues(df1$tkA, from = 'C', to = 'C: 3-m boom')
 df1$app.methA <- df1$app.meth
 df1$app.methA <- mapvalues(df1$app.methA, from = 'Trailing hose', to = 'TH')
 df1$app.methA <- mapvalues(df1$app.methA, from = 'Injection', to = 'IN')
-in1A <- factor(interaction(df1$app.methA, df1$treat))
-in1A <- gsub('\\.', ' ', in1A)
+df1$in1A <- factor(interaction(df1$app.methA, df1$treat))
+df1$in1A <- gsub('\\.', ' ', df1$in1A)
+
+df1$in1A <- factor(df1$in1A, levels = c('TH DFC', 'TH WT', 'TH bLS', 'IN DFC', 'IN bLS'))
 
 ggplot(df1, aes(elapsed.time, flux.perc, color = in1A)) + 
   geom_point(size = 0.5) + 
