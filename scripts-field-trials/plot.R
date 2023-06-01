@@ -4,11 +4,13 @@ df2$app.meth <- mapvalues(df2$app.meth, from = 'TH', to = 'Trailing hose')
 df1$app.meth <- mapvalues(df1$app.meth, from = 'IN', to = 'Injection')
 df2$app.meth <- mapvalues(df2$app.meth, from = 'IN', to = 'Injection')
 
-in1 <- factor(interaction(df1$app.meth, df1$treat))
+df1$in1 <- factor(interaction(df1$app.meth, df1$treat))
 in2 <- factor(interaction(df2$app.meth, df2$treat))
 
-in1 <- gsub('\\.', ' ', in1)
+df1$in1 <- gsub('\\.', ' ', df1$in1)
 in2 <- gsub('\\.', ' ', in2)
+
+df1$in1 <- factor(df1$in1, levels = c('Trailing hose DFC', 'Trailing hose WT', 'Trailing hose bLS', 'Injection DFC', 'Injection bLS'))
 
 # Flux
 ggplot(df1, aes(elapsed.time, flux, color = in1)) + 
