@@ -1,4 +1,5 @@
 
+
 df1$app.meth <- mapvalues(df1$app.meth, from = 'TH', to = 'Trailing hose')
 df2$app.meth <- mapvalues(df2$app.meth, from = 'TH', to = 'Trailing hose')
 df1$app.meth <- mapvalues(df1$app.meth, from = 'IN', to = 'Injection')
@@ -35,30 +36,30 @@ ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
   theme(legend.position = 'bottom', legend.title = element_blank())
 ggsave2x('../plots-field-trials/flux_perc', height = 4, width = 7) 
 
-# conference poster plot
-df1$tkA <- df1$tk
-df1$tkA <- mapvalues(df1$tkA, from = 'A', to = 'A: Manual')
-df1$tkA <- mapvalues(df1$tkA, from = 'B', to = 'B: 30-m boom')
-df1$tkA <- mapvalues(df1$tkA, from = 'C', to = 'C: 3-m boom')
-
-df1$app.methA <- df1$app.meth
-df1$app.methA <- mapvalues(df1$app.methA, from = 'Trailing hose', to = 'TH')
-df1$app.methA <- mapvalues(df1$app.methA, from = 'Injection', to = 'IN')
-df1$in1A <- factor(interaction(df1$app.methA, df1$treat))
-df1$in1A <- gsub('\\.', ' ', df1$in1A)
-
-df1$in1A <- factor(df1$in1A, levels = c('TH DFC', 'TH WT', 'TH bLS', 'IN DFC', 'IN bLS'))
-
-ggplot(df1, aes(elapsed.time, flux.perc, color = in1A)) + 
-  geom_point(size = 0.5) + 
-  geom_line(aes(group = interaction(tk, app.meth, id))) + 
-  facet_wrap(~ tkA, scale = 'free') + 
-  theme_bw() + 
-  scale_color_brewer(palette = 'Set1') + 
-  ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
-  xlab('Time after slurry digestate application (hours)') + 
-  theme(legend.position = 'bottom', legend.title = element_blank())
-ggsave2x('../plots-field-trials/flux_perc_EGU', height = 3, width = 5) 
+# # conference poster plot
+# df1$tkA <- df1$tk
+# df1$tkA <- mapvalues(df1$tkA, from = 'A', to = 'A: Manual')
+# df1$tkA <- mapvalues(df1$tkA, from = 'B', to = 'B: 30-m boom')
+# df1$tkA <- mapvalues(df1$tkA, from = 'C', to = 'C: 3-m boom')
+# 
+# df1$app.methA <- df1$app.meth
+# df1$app.methA <- mapvalues(df1$app.methA, from = 'Trailing hose', to = 'TH')
+# df1$app.methA <- mapvalues(df1$app.methA, from = 'Injection', to = 'IN')
+# df1$in1A <- factor(interaction(df1$app.methA, df1$treat))
+# df1$in1A <- gsub('\\.', ' ', df1$in1A)
+# 
+# df1$in1A <- factor(df1$in1A, levels = c('TH DFC', 'TH WT', 'TH bLS', 'IN DFC', 'IN bLS'))
+# 
+# ggplot(df1, aes(elapsed.time, flux.perc, color = in1A)) + 
+#   geom_point(size = 0.5) + 
+#   geom_line(aes(group = interaction(tk, app.meth, id))) + 
+#   facet_wrap(~ tkA, scale = 'free') + 
+#   theme_bw() + 
+#   scale_color_brewer(palette = 'Set1') + 
+#   ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
+#   xlab('Time after slurry digestate application (hours)') + 
+#   theme(legend.position = 'bottom', legend.title = element_blank())
+# ggsave2x('../plots-field-trials/flux_perc_EGU', height = 3, width = 5) 
 
 # Cum emis
 ggplot(df1, aes(elapsed.time, cum.emis.perc, color = in1)) + 
@@ -102,12 +103,35 @@ ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) +
 ggsave2x('../plots-field-trials/weather', height = 6, width = 7)
 
 
-# # temperature sensors
-# dt$elapsed.time <- as.numeric(dt$elapsed.time)
-# 
-# ggplot() + 
-#   geom_line(dt, aes(elapsed.time, temp, color = id)) + 
-#   facet_wrap(~ tk) + 
-#   theme_bw() + 
-#   geom_point(data = weather, aes(elapsed.time, num))
+# combined plot of flux and weather
 
+weather$what <- mapvalues(weather$what, from = 'airT', to = 'Temperature')
+weather$what <- mapvalues(weather$what, from = 'prec', to = 'Precipitation')
+weather$what <- mapvalues(weather$what, from = 'WS', to = 'Wind speed')
+
+pflux <- ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) + 
+  geom_point(size = 0.5) + 
+  geom_line(aes(group = interaction(tk, app.meth, id)), size = 0.5) + 
+  facet_wrap(~ tk, scale = 'free') + 
+  theme_bw() + 
+  scale_color_brewer(palette = 'Set1') + 
+  ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
+  theme(legend.title = element_blank()) + 
+  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.ticks.x = element_blank())
+
+fclim <- ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) + 
+  geom_line() + 
+  facet_wrap(~ tk, scale = 'free') + 
+  theme_bw() + 
+  scale_color_brewer(palette = 'Set1') +
+  xlab('Time after digestate application (hours)') + 
+  ylab(expression(paste("Temp. (",degree,"C) / WS ( m ", s^-1, ') / Prec. (mm)'))) +
+  theme(legend.title = element_blank()) + 
+  ylim(0, 13) + 
+  theme(strip.text.x = element_blank())
+print(fclim)
+
+# Note that ggave (so ggsave2x) won't work
+pdf('../plots-field-trials/flux_weather.pdf', height = 5, width = 8)
+grid::grid.draw(rbind(ggplotGrob(pflux), ggplotGrob(fclim)))
+dev.off()

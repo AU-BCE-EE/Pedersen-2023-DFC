@@ -8,4 +8,4 @@ ggplot(dd, aes(Mean, Variance, color = Treat)) +
   ylab('Variance') +
   xlab(expression(paste('Mean TAN (%  ',  min^-1,')'))) + 
   theme(legend.position = 'bottom', legend.title = element_blank())
-ggsave2x('../plots-variance/Variance', height = 3, width = 4) 
+ggsave2x('../plots-variance/Variance', height = 3, width = 3) 
