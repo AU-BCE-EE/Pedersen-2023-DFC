@@ -118,6 +118,7 @@ pflux <- ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
   ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
   theme(legend.title = element_blank()) + 
   theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.ticks.x = element_blank())
+print(pflux)
 
 fclim <- ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) + 
   geom_line() + 
@@ -133,5 +134,42 @@ print(fclim)
 
 # Note that ggave (so ggsave2x) won't work
 pdf('../plots-field-trials/flux_weather.pdf', height = 5, width = 8)
+grid::grid.draw(rbind(ggplotGrob(pflux), ggplotGrob(fclim)))
+dev.off()
+
+#### one with four pannels
+
+df1$tk1 <- df1$tk
+df1$tk1[df1$tk == 'C' & df1$app.meth == 'Injection'] <- 'C '
+
+dfw <- weather[weather$tk == 'C', ]
+dfw$tk <- 'C '
+weather <- rbind(weather, dfw)
+
+pflux <- ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) + 
+  geom_point(size = 0.5) + 
+  geom_line(aes(group = interaction(tk, app.meth, id)), size = 0.5) + 
+  facet_wrap(~ tk1, scale = 'free', ncol = 4) + 
+  theme_bw() + 
+  scale_color_brewer(palette = 'Set1') + 
+  ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
+  theme(legend.title = element_blank()) + 
+  theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.ticks.x = element_blank())
+print(pflux)
+
+fclim <- ggplot(na.omit(weather), aes(elapsed.time, num, color = what)) + 
+  geom_line() + 
+  facet_wrap(~ tk, scale = 'free', ncol = 4) + 
+  theme_bw() + 
+  scale_color_brewer(palette = 'Set1') +
+  xlab('Time after digestate application (hours)') + 
+  ylab(expression(paste("Temp. (",degree,"C) / WS ( m ", s^-1, ') / Prec. (mm)'))) +
+  theme(legend.title = element_blank()) + 
+  ylim(0, 13) + 
+  theme(strip.text.x = element_blank())
+print(fclim)
+
+# Note that ggave (so ggsave2x) won't work
+pdf('../plots-field-trials/flux_weather1.pdf', height = 5, width = 8)
 grid::grid.draw(rbind(ggplotGrob(pflux), ggplotGrob(fclim)))
 dev.off()
