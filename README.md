@@ -29,13 +29,9 @@ These bLS data processing files include some MATLAB scripts.
 
 ## `data`
 Emission flux data from all three trial for DFC, WT, and bLS measurements.
-
 Emission flux data for air exchange rate (AER) test. 
-
 Slurry and soil properties for field and slurry used in the three trials. 
-
 Temperature data. 
-
 Data used for plot of model of variation for WT and DFC. 
 
 ## `functions`
