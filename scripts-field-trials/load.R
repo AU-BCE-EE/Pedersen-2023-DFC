@@ -1,10 +1,10 @@
 
 
 ### DFC data
-dA <- read.csv('../data/expA_221217.csv', sep = ';')
-dB <- read.csv('../data/expB_221217.csv', sep = ';')
-dC_in <- read.csv('../data/expC_IN_221217.csv')
-dC_th <- read.csv('../data/expC_TH_221217.csv')
+dA <- read.csv('../data/expA.csv', sep = ';')
+dB <- read.csv('../data/expB.csv', sep = ';')
+dC_in <- read.csv('../data/expC_IN.csv')
+dC_th <- read.csv('../data/expC_TH.csv')
 
 ### bLS data
 bB <- read.table('../data/DFC_1_results_16_12_2022.txt', header = TRUE, fill = TRUE)
