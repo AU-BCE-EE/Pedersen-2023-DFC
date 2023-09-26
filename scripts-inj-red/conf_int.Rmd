@@ -1,0 +1,77 @@
+---
+title: 'Injection reduction confidence interval'
+output: pdf_document
+author: Sasha D. Hafner
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Data
+
+```{r}
+dat
+```
+
+```{r}
+dat$app.meth <- factor(dat$app.meth, levels = c('TH', 'IN'))
+```
+
+
+Transformation for relative effect
+
+```{r}
+dat$le <- log10(dat$cum.emis.perc)
+```
+
+```{r}
+m1 <- t.test(cum.emis.perc ~ app.meth, data = dat)
+m1
+```
+
+Mean reduction:
+
+```{r}
+as.numeric(1 - m1$estimate[2] / m1$estimate[1])
+```
+89%
+
+Confidence interval on difference:
+
+```{r}
+m1$conf.int / m1$estimate[1]
+```
+
+74.7-100% reduction.
+
+
+Use log-transformed values.
+Negative emission not possible with the transformation.
+
+```{r}
+m2 <- t.test(le ~ app.meth, data = dat)
+1 - 10^(-m2$conf.int)
+```
+
+83-95% reduction.
+
+lm instead
+
+```{r}
+m3 <- lm(cum.emis.perc ~ app.meth, data = dat)
+confint(m3)
+```
+
+Not exactly same as m1 but close.
+
+lm with log transformation.
+
+```{r}
+m4 <- lm(le ~ app.meth, data = dat)
+1- 10^confint(m4)
+```
+ 83-95% reduction.
+
+
+
+
+
+
