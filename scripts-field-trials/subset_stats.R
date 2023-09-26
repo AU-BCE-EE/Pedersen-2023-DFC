@@ -1,12 +1,9 @@
 
-# For LSD analysis:
-statA <- df1[df1$tk == 'A' & df1$elapsed.time == 60 & df1$treat == 'DFC', ]
-statB <- df1[df1$tk == 'B' & df1$elapsed.time == 118 & df1$treat == 'DFC', ]
-statC <- df1[df1$tk == 'C' & df1$elapsed.time == 119 & df1$treat == 'DFC', ]
-stat.dat <- rbind(statA, statB, statC)
-stat.dat <- stat.dat[, c('tk', 'id', 'cum.emis.perc', 'app.meth')]
+# For CI calculations, trial C:
+CI.C <- df1[df1$tk == 'C' & df1$elapsed.time == 119 & df1$treat == 'DFC', ]
+CI.C <- CI.C[, c('tk', 'id', 'cum.emis.perc', 'app.meth')]
 
-write.csv(stat.dat, '../data/statLSD_230413.csv')
+write.csv(CI.C, '../data/CI.C.csv')
 
 # For comparing WT and DFC:
 statD <- df1[df1$tk == 'A', ]
