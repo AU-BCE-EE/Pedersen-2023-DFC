@@ -68,8 +68,8 @@ This section give the sources of tables, figures, and some statistical results p
 
 | Paper component          |  Repo source                             |  Repo scripts             |
 |-----------------         |-----------------                         |---------------            |
-|    Figure FFF              | `plots-field-trials/flux_weather1.pdf`       | `scripts-field-trials/plot.R` |
-|    Table FDF             |           | `scripts-field_trials/DFC_dataframe.R` and `scripts-field_trials/bLS_dataframe.R`      |
-|    Figure GGG              | `plots-variance/variance.pdf`      | `scripts-variance/plot.R`   |
-| Fgiure SAER | `plots-AER-test/AER_test.pdf`                       | `scripts-AER-test/plot.R`|
-| Figure SAER2  | `plots-AER-test/AER_test_rec.pdf`                    | `scripts-AER-test/plot.R` |
+|    Figure 4              | `plots-field-trials/flux_weather1.pdf`       | `scripts-field-trials/plot.R` |
+|    Table 4             |           | `scripts-field_trials/DFC_dataframe.R` and `scripts-field_trials/bLS_dataframe.R`      |
+|    Figure 5              | `plots-variance/variance.pdf`      | `scripts-variance/plot.R`   |
+| Figure S14 | `plots-AER-test/AER_test.pdf`                       | `scripts-AER-test/plot.R`|
+| Figure S15  | `plots-AER-test/AER_test_rec.pdf`                    | `scripts-AER-test/plot.R` |
