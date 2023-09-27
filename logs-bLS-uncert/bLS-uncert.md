@@ -80,7 +80,7 @@ ce <- 3.2
 
 Uncertainty over 2 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
 
-1800 s = dt, 48 = number of intervals in 1 day, 2 = days
+1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 2 = days
 
 
 ```r
@@ -120,6 +120,21 @@ u3
 ```
 ## [1] 2.089486
 ```
+
+Now, for the relative reductions, we might again consider that simultaneous extremes are unlikely.
+So a combined value is:
+
+
+```r
+cu <- sqrt(2 * u3^2)
+cu
+```
+
+```
+## [1] 2.95498
+```
+
+But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log-transformation).
 
 Over 5 days.
 
