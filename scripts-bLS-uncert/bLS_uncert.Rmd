@@ -79,6 +79,15 @@ cu
 
 But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log-transformation).
 
+So, looking at extremes, we get:
+
+```{r}
+100 * (1 - (0.3 + u3) / (12 - u3))
+100 * (1 - (0.3 - u3) / (12 + u3))
+```
+
+So 76% to 100% reduction.
+
 Over 5 days.
 
 

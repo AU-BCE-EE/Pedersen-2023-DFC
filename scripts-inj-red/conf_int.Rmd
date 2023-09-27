@@ -99,6 +99,12 @@ msth
 msin
 ```
 
+```{r}
+10^msth$conf.int
+10^msin$conf.int
+```
+
+
 Now get range from all 4 combinations.
 
 ```{r}

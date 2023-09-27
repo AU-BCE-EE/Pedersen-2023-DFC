@@ -242,6 +242,28 @@ msin
 ## 0.6036225
 ```
 
+
+```r
+10^msth$conf.int
+```
+
+```
+## [1] 36.88580 48.91822
+## attr(,"conf.level")
+## [1] 0.95
+```
+
+```r
+10^msin$conf.int
+```
+
+```
+## [1] 2.259033 7.133824
+## attr(,"conf.level")
+## [1] 0.95
+```
+
+
 Now get range from all 4 combinations.
 
 
