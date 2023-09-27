@@ -42,6 +42,17 @@ Transformation for relative effect
 dat$le <- log10(dat$cum.emis.perc)
 ```
 
+Subsets for separate approach.
+
+
+```r
+dth <- subset(dat, app.meth == 'TH')
+din <- subset(dat, app.meth == 'IN')
+```
+
+Now confidence intervals.
+
+
 
 ```r
 m1 <- t.test(cum.emis.perc ~ app.meth, data = dat)
@@ -189,7 +200,62 @@ txtplot(predict(m4), resid(m4))
 ##       0.6       0.8         1        1.2       1.4       1.6
 ```
 
+Try separate CIs.
 
+
+```r
+msth <- t.test(dth$le)
+msin <- t.test(din$le)
+
+msth
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  dth$le
+## t = 68.27, df = 5, p-value = 1.277e-08
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  1.566859 1.689471
+## sample estimates:
+## mean of x 
+##  1.628165
+```
+
+```r
+msin
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  din$le
+## t = 5.9151, df = 6, p-value = 0.001039
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.3539225 0.8533224
+## sample estimates:
+## mean of x 
+## 0.6036225
+```
+
+Now get range from all 4 combinations.
+
+
+```r
+range(outer(msth$conf.int, msin$conf.int, function(x, y) 100 * (1 - 10^y / 10^x)))
+```
+
+```
+## [1] 80.65970 95.38202
+```
+
+Gives 80-95% reduction.
+Not very different.
+This is a conservative approach (wide CI).
 
 
 
