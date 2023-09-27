@@ -70,6 +70,14 @@ m4 <- lm(le ~ app.meth, data = dat)
 ```
  83-95% reduction.
 
+Check residuals.
+Looks like both normal and log-normal assumptions are bad.
+Maybe good enough for this CI though.
+
+```{r}
+txtplot(predict(m3), resid(m3))
+txtplot(predict(m4), resid(m4))
+```
 
 
 

@@ -2,7 +2,7 @@
 title: 'Injection reduction confidence interval'
 output: pdf_document
 author: Sasha D. Hafner
-date: "26 September, 2023"
+date: "27 September, 2023"
 ---
 
 Data
@@ -138,6 +138,56 @@ m4 <- lm(le ~ app.meth, data = dat)
 ```
  83-95% reduction.
 
+Check residuals.
+Looks like both normal and log-normal assumptions are bad.
+Maybe good enough for this CI though.
+
+
+```r
+txtplot(predict(m3), resid(m3))
+```
+
+```
+## 10 +---------+--------------+-------------+-------------+------+
+##    |                                                        *  |
+##    |                                                           |
+##    |                                                           |
+##  5 +                                                           +
+##    |  *                                                        |
+##    |  *                                                        |
+##    |  *                                                     *  |
+##  0 +  *                                                     *  +
+##    |  *                                                        |
+##    |  *                                                        |
+##    |                                                           |
+## -5 +                                                        *  +
+##    |                                                        *  |
+##    +---------+--------------+-------------+-------------+------+
+##             10             20            30            40
+```
+
+```r
+txtplot(predict(m4), resid(m4))
+```
+
+```
+##      +-+---------+----------+---------+---------+---------+----+
+##      |  *                                                      |
+##      |  *                                                      |
+##  0.2 +  *                                                      +
+##      |                                                     *   |
+##      |                                                         |
+##    0 +  *                                                  *   +
+##      |                                                     *   |
+##      |  *                                                      |
+## -0.2 +  *                                                      +
+##      |                                                         |
+##      |                                                         |
+##      |                                                         |
+## -0.4 +  *                                                      +
+##      +-+---------+----------+---------+---------+---------+----+
+##       0.6       0.8         1        1.2       1.4       1.6
+```
 
 
 
