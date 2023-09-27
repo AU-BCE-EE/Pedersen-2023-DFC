@@ -1,0 +1,85 @@
+---
+title: 'bLS emission uncertainty'
+output: pdf_document
+author: Sasha D. Hafner
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Mean CE (s / m).
+
+By day and application method.
+
+```{r}
+dat[day < 6, .(CE_mean = mean(na.omit(CE))), by = .(app.mthd, day)]
+```
+
+Over first 5 days.
+
+
+```{r}
+dat[day < 6, .(CE_mean = mean(na.omit(CE))), ]
+```
+
+Estimated standard deviation in bias among instruments (micro g N / m3)
+
+```{r}
+x <- c(east = 1.92, west = 0.27, bg = 0.82)
+sd(x)
+sb <- sqrt(2 * sd(x))
+sb
+```
+
+TAN application rate (kg N / ha)
+
+```{r}
+tan.app <- 67
+```
+
+Use CE = 3.2, average of day 1 and 2
+
+```{r}
+ce <- 3.2
+```
+
+Uncertainty over 2 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
+
+1800 s = dt, 48 = number of intervals in 1 day, 2 = days
+
+```{r}
+u <- 2 * sb / ce * 1800 * 48 * 2
+u
+```
+
+Convert to kg / ha.
+
+* 1E6 micro g / g 
+* 1E3 g / kg
+* 1E4 m2 / ha
+
+
+```{r}
+u2 <- u / 1E6 / 1E3 * 1E4
+u2
+```
+
+Express as % of applied TAN
+
+```{r}
+u3 <- u2 / tan.app * 100
+u3
+```
+
+Over 5 days.
+
+
+```{r}
+ce <- 3.0
+u <- 2 * sb / ce * 1800 * 48 * 5
+u2 <- u / 1E6 / 1E3 * 1E4
+u3 <- u2 / tan.app * 100
+u3
+```
+
+
+
+
