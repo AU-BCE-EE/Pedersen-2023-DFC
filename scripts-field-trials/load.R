@@ -9,7 +9,7 @@ dC_th <- read.csv('../data/expC_TH.csv')
 ### bLS data
 bB <- read.table('../data/DFC_1_results_16_12_2022.txt', header = TRUE, fill = TRUE)
 bC_in <- read.table('../data/DFC_2_east_results_20_03_2023_JP.txt', header = TRUE, fill = TRUE)
-bC_th <- read.table('../data/DFC_2_west_results_20_03_2023_JP.txt', header = TRUE, fill = TRUE)
+bC_th <- read.table('../data/DFC_2_west_results_20_03_2023_updated_28_09_2023_JP.txt', header = TRUE, fill = TRUE)
 
 ### soil and slurry data
 sl <- read.xlsx('../data/slurry_soil.xlsx', sheet = 1)
