@@ -13,6 +13,13 @@ By day and application method.
 dat[day < 6, .(CE_mean = mean(na.omit(CE))), by = .(app.mthd, day)]
 ```
 
+Over first 4 days.
+
+
+```{r}
+dat[day < 5, .(CE_mean = mean(na.omit(CE))), ]
+```
+
 Over first 5 days.
 
 
@@ -29,24 +36,47 @@ sb <- sqrt(2 * sd(x))
 sb
 ```
 
+Consider standard deviation after application (this includes correction).
+
+Look at concentration curves.
+
+```{r}
+txtplot(wd$ct, wd$NH3_west, height = 40)
+txtplot(wd$ct, wd$NH3_east, height = 40)
+txtplot(wd$ct, wd$NH3_bg, height = 40)
+```
+
+```{r}
+wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))]
+ed[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))]
+sb <- sd(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))])
+sb
+```
+
+Number of points.
+
+```{r}
+wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(nw = sum(!is.na(NH3_west)), ne = sum(!is.na(NH3_east)), nb = sum(!is.na(NH3_bg)))]
+```
+
 TAN application rate (kg N / ha)
 
 ```{r}
 tan.app <- 67
 ```
 
-Use CE = 3.2, average of day 1 and 2
+Use CE = 3.0, average over 4 days.
 
 ```{r}
-ce <- 3.2
+ce <- 3.0
 ```
 
-Uncertainty over 2 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
+Uncertainty over 4 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
 
-1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 2 = days
+1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 4 = days
 
 ```{r}
-u <- 2 * sb / ce * 1800 * 48 * 2
+u <- 2 * sb / ce * 1800 * 48 * 4
 u
 ```
 
@@ -77,7 +107,7 @@ cu <- sqrt(2 * u3^2)
 cu
 ```
 
-But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log-transformation).
+But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log transformation).
 
 So, looking at extremes, we get:
 
@@ -86,7 +116,7 @@ So, looking at extremes, we get:
 100 * (1 - (0.3 - u3) / (12 + u3))
 ```
 
-So 76% to 100% reduction.
+So 86% to 100% reduction.
 
 Over 5 days.
 
