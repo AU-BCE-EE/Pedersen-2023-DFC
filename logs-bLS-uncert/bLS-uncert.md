@@ -69,8 +69,8 @@ sd(x)
 ```
 
 ```r
-sb <- sqrt(2 * sd(x))
-sb
+sb1 <- sqrt(2 * sd(x))
+sb1
 ```
 
 ```
@@ -243,14 +243,38 @@ ed[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west))
 ```
 
 ```r
-sb <- sd(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))])
-sb
+y <- unlist(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(east = mean(na.omit(NH3_east)), west = mean(na.omit(NH3_west)), bg = mean(na.omit(NH3_bg)))])
+sb2 <- sd(y)
+sb2
 ```
 
 ```
 ## [1] 0.3523884
 ```
 
+
+```r
+txtplot(x, y)
+```
+
+```
+##     +---------+---------------+----------------+---------------+
+## 1.2 +                                                       *  +
+##     |                                                          |
+##     |                                                          |
+##     |                                                          |
+##   1 +                                                          +
+##     |                                                          |
+##     |  *                                                       |
+##     |                                                          |
+## 0.8 +                                                          +
+##     |                                                          |
+##     |                                                          |
+## 0.6 +                                                          +
+##     |                    *                                     |
+##     +---------+---------------+----------------+---------------+
+##              0.5              1               1.5              2
+```
 Number of points.
 
 
@@ -261,6 +285,13 @@ wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(nw = sum(!is.na(NH3_west)), 
 ```
 ##    nw ne nb
 ## 1: 60 60 60
+```
+
+Combine sd estimates.
+
+
+```r
+sb <- sd(c(x, y))
 ```
 
 TAN application rate (kg N / ha)
@@ -288,7 +319,7 @@ u
 ```
 
 ```
-## [1] 81190.28
+## [1] 133496.9
 ```
 
 Convert to kg / ha.
@@ -305,7 +336,7 @@ u2
 ```
 
 ```
-## [1] 0.8119028
+## [1] 1.334969
 ```
 
 Express as % of applied TAN
@@ -317,7 +348,7 @@ u3
 ```
 
 ```
-## [1] 1.211795
+## [1] 1.992491
 ```
 
 Now, for the relative reductions, we might again consider that simultaneous extremes are unlikely.
@@ -330,7 +361,7 @@ cu
 ```
 
 ```
-## [1] 1.713737
+## [1] 2.817807
 ```
 
 But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log transformation).
@@ -343,7 +374,7 @@ So, looking at extremes, we get:
 ```
 
 ```
-## [1] 85.98659
+## [1] 77.0923
 ```
 
 ```r
@@ -351,27 +382,7 @@ So, looking at extremes, we get:
 ```
 
 ```
-## [1] 106.9014
+## [1] 112.0957
 ```
 
-So 86% to 100% reduction.
-
-Over 5 days.
-
-
-
-```r
-ce <- 3.0
-u <- 2 * sb / ce * 1800 * 48 * 5
-u2 <- u / 1E6 / 1E3 * 1E4
-u3 <- u2 / tan.app * 100
-u3
-```
-
-```
-## [1] 1.514744
-```
-
-
-
-
+So 77% to 100% reduction based on emission over 4 days.

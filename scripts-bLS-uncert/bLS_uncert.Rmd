@@ -32,8 +32,8 @@ Estimated standard deviation in bias among instruments (micro g N / m3)
 ```{r}
 x <- c(east = 1.92, west = 0.27, bg = 0.82)
 sd(x)
-sb <- sqrt(2 * sd(x))
-sb
+sb1 <- sqrt(2 * sd(x))
+sb1
 ```
 
 Consider standard deviation after application (this includes correction).
@@ -49,14 +49,24 @@ txtplot(wd$ct, wd$NH3_bg, height = 40)
 ```{r}
 wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))]
 ed[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))]
-sb <- sd(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))])
-sb
+y <- unlist(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(east = mean(na.omit(NH3_east)), west = mean(na.omit(NH3_west)), bg = mean(na.omit(NH3_bg)))])
+sb2 <- sd(y)
+sb2
 ```
 
+```{r}
+txtplot(x, y)
+```
 Number of points.
 
 ```{r}
 wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(nw = sum(!is.na(NH3_west)), ne = sum(!is.na(NH3_east)), nb = sum(!is.na(NH3_bg)))]
+```
+
+Combine sd estimates.
+
+```{r}
+sb <- sd(c(x, y))
 ```
 
 TAN application rate (kg N / ha)
@@ -116,19 +126,4 @@ So, looking at extremes, we get:
 100 * (1 - (0.3 - u3) / (12 + u3))
 ```
 
-So 86% to 100% reduction.
-
-Over 5 days.
-
-
-```{r}
-ce <- 3.0
-u <- 2 * sb / ce * 1800 * 48 * 5
-u2 <- u / 1E6 / 1E3 * 1E4
-u3 <- u2 / tan.app * 100
-u3
-```
-
-
-
-
+So 77% to 100% reduction based on emission over 4 days.
