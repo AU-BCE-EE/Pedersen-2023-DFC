@@ -39,3 +39,4 @@ bbw <- bb
 
 # subsetting: 
 bb <- bb[, c('elapsed.time', 'date.time', 'id', 'flux', 'cum.emis', 'tk', 'app.meth', 'treat')]
+
