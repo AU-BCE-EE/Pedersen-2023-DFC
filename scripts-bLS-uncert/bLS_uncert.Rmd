@@ -67,6 +67,13 @@ Combine sd estimates.
 
 ```{r}
 sb <- sd(c(x, y))
+sb
+```
+
+But use sd from after emission in the end.
+
+```{r}
+sb <- sb2
 ```
 
 TAN application rate (kg N / ha)
@@ -75,18 +82,25 @@ TAN application rate (kg N / ha)
 tan.app <- 67
 ```
 
-Use CE = 3.0, average over 4 days.
+Use CE = 3.03, average over 5 days.
 
 ```{r}
-ce <- 3.0
+ce <- 3.03
 ```
 
-Uncertainty over 4 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
+Uncertainty over 5 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
 
-1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 4 = days
+1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 5 = days
+
+Units below
+
+```
+ micro g N / m3        m / s        s / int     int / d       d --> micro g N / m2
+     sb                1/ce          1800          48         5
+```
 
 ```{r}
-u <- 2 * sb / ce * 1800 * 48 * 4
+u <- 2 * sb / ce * 1800 * 48 * 5
 u
 ```
 
@@ -96,6 +110,12 @@ Convert to kg / ha.
 * 1E3 g / kg
 * 1E4 m2 / ha
 
+Units:
+
+```
+micro g / m2    g / micro g   kg / g      m2 / ha --> kg/ha  
+     u          1/1E6          1/1E3      1E4      
+```
 
 ```{r}
 u2 <- u / 1E6 / 1E3 * 1E4
@@ -122,8 +142,8 @@ But I cannot figure out how to use this, because we want a *relative* not absolu
 So, looking at extremes, we get:
 
 ```{r}
-100 * (1 - (0.3 + u3) / (12 - u3))
+100 * (1 - (0.3 + u3) / (10.7 - u3))
 100 * (1 - (0.3 - u3) / (12 + u3))
 ```
 
-So 77% to 100% reduction based on emission over 4 days.
+So 80% to 109% (100%) reduction based on emission over 4 days.

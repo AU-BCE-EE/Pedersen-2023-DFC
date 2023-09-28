@@ -292,6 +292,18 @@ Combine sd estimates.
 
 ```r
 sb <- sd(c(x, y))
+sb
+```
+
+```
+## [1] 0.5794135
+```
+
+But use sd from after emission in the end.
+
+
+```r
+sb <- sb2
 ```
 
 TAN application rate (kg N / ha)
@@ -301,25 +313,32 @@ TAN application rate (kg N / ha)
 tan.app <- 67
 ```
 
-Use CE = 3.0, average over 4 days.
+Use CE = 3.03, average over 5 days.
 
 
 ```r
-ce <- 3.0
+ce <- 3.03
 ```
 
-Uncertainty over 4 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
+Uncertainty over 5 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
 
-1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 4 = days
+1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 5 = days
+
+Units below
+
+```
+ micro g N / m3        m / s        s / int     int / d       d --> micro g N / m2
+     sb                1/ce          1800          48         5
+```
 
 
 ```r
-u <- 2 * sb / ce * 1800 * 48 * 4
+u <- 2 * sb / ce * 1800 * 48 * 5
 u
 ```
 
 ```
-## [1] 133496.9
+## [1] 100483
 ```
 
 Convert to kg / ha.
@@ -328,6 +347,12 @@ Convert to kg / ha.
 * 1E3 g / kg
 * 1E4 m2 / ha
 
+Units:
+
+```
+micro g / m2    g / micro g   kg / g      m2 / ha --> kg/ha  
+     u          1/1E6          1/1E3      1E4      
+```
 
 
 ```r
@@ -336,7 +361,7 @@ u2
 ```
 
 ```
-## [1] 1.334969
+## [1] 1.00483
 ```
 
 Express as % of applied TAN
@@ -348,7 +373,7 @@ u3
 ```
 
 ```
-## [1] 1.992491
+## [1] 1.499747
 ```
 
 Now, for the relative reductions, we might again consider that simultaneous extremes are unlikely.
@@ -361,7 +386,7 @@ cu
 ```
 
 ```
-## [1] 2.817807
+## [1] 2.120962
 ```
 
 But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log transformation).
@@ -370,11 +395,11 @@ So, looking at extremes, we get:
 
 
 ```r
-100 * (1 - (0.3 + u3) / (12 - u3))
+100 * (1 - (0.3 + u3) / (10.7 - u3))
 ```
 
 ```
-## [1] 77.0923
+## [1] 80.43808
 ```
 
 ```r
@@ -382,7 +407,7 @@ So, looking at extremes, we get:
 ```
 
 ```
-## [1] 112.0957
+## [1] 108.8872
 ```
 
-So 77% to 100% reduction based on emission over 4 days.
+So 80% to 109% (100%) reduction based on emission over 4 days.
