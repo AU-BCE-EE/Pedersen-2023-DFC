@@ -684,6 +684,14 @@ Convert CI to standard deviation for IN and TH.
 
 ```r
 s3 <- u3 / 2
+s3
+```
+
+```
+## [1] 1.227955
+```
+
+```r
 eth <- rnorm(10000, mean = 8.77, sd = s3)
 ein <- rnorm(10000, mean = 0.23, sd = s3)
 rred <- 100 * (1 - ein / eth)
@@ -692,7 +700,7 @@ quantile(rred, c(0.05, 0.95))
 
 ```
 ##        5%       95% 
-##  74.05834 121.17633
+##  74.12354 121.05204
 ```
 
 That gives a 74% to 121% (100%) range.

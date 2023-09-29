@@ -196,6 +196,7 @@ Convert CI to standard deviation for IN and TH.
 
 ```{r}
 s3 <- u3 / 2
+s3
 eth <- rnorm(10000, mean = 8.77, sd = s3)
 ein <- rnorm(10000, mean = 0.23, sd = s3)
 rred <- 100 * (1 - ein / eth)
