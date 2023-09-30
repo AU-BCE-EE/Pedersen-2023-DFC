@@ -2,7 +2,7 @@
 title: 'bLS emission uncertainty'
 output: pdf_document
 author: Sasha D. Hafner
-date: "28 September, 2023"
+date: "29 September, 2023"
 ---
 
 Mean CE (s / m).
@@ -223,6 +223,169 @@ txtplot(wd$ct, wd$NH3_bg, height = 40)
 ##         0        50        100       150       200       250
 ```
 
+With correction
+
+
+```r
+txtplot(wd$ct, wd$NH3_west_corr, height = 40)
+```
+
+```
+##    +---+---------+---------+---------+---------+---------+-----+
+##    |                                                           |
+## 40 +  *                                                        +
+##    |                                                           |
+##    |                                                           |
+##    |                                                           |
+##    |  *                                                        |
+##    |  *                                                        |
+##    |                                                           |
+##    |                                                           |
+##    |                                                           |
+## 30 +                                                           +
+##    |                                                           |
+##    |                                                           |
+##    |                                                           |
+##    |  *                                                        |
+##    |   *                                                       |
+##    |                                                           |
+##    |   *                                                       |
+##    |   *                                                       |
+## 20 +                                                           +
+##    |   *                                                       |
+##    |                                                           |
+##    |   ***                                                     |
+##    |    **                                                     |
+##    |    **                                                     |
+##    |    *                                                      |
+##    |    **                                                     |
+## 10 +     *                                                     +
+##    |     **                                                    |
+##    |      **                                                   |
+##    |      **    *                                              |
+##    |       *    *                                              |
+##    |       *    *                       *  *                   |
+##    |       *  *****           ******   ** ****                 |
+##    |        **** *********************** ** ********  **       |
+##    |  *            **     ****      * **  *   **  **********   |
+##  0 +                                                           +
+##    +---+---------+---------+---------+---------+---------+-----+
+##        0        50        100       150       200       250
+```
+
+```r
+txtplot(wd$ct, wd$NH3_east_corr, height = 40)
+```
+
+```
+##     +---+---------+---------+---------+---------+---------+----+
+##     |                                                          |
+##     |                                   *                      |
+##   2 +                                   *                      +
+##     |                                                          |
+##     |                                   **                     |
+##     |            *                       *                     |
+##     |           *                                              |
+##     |                                                          |
+##     |                                       *                  |
+##     |                                    *   *                 |
+##     |            *                      *                      |
+## 1.5 +                                       *                  +
+##     |                                      *                   |
+##     |                                       *                  |
+##     |           *                          * *                 |
+##     |                                    * ***                 |
+##     |           **                         ***                 |
+##     |            *                         ***                 |
+##     |     **     ***                                           |
+##   1 +  * ***     ***                *        *                 +
+##     |  ******    * *                **  ****     *             |
+##     |  *****      ***               *   * *     **             |
+##     |  *    *   * ****             ***   *   *                 |
+##     |  *    *       ***            ** ** *    * **             |
+##     |       *       * *              **  **   * **             |
+##     |       ** *      *            * *** **   * ***            |
+##     |        ****     **           *  **  **  ****             |
+## 0.5 +          **      ***           ***  *   ** *             +
+##     |           *      ****        * * *  *   ** **            |
+##     |                    **      *    **         **            |
+##     |                     *      *** * *       *  *            |
+##     |                     **   *  **   *       *  **   *   *   |
+##     |                      **  *****           *  **  ** ***   |
+##     |                       * ******           *   *********   |
+##     |                       *** *                 ***** ***    |
+##   0 +                        *                      ***   *    +
+##     |                                                          |
+##     +---+---------+---------+---------+---------+---------+----+
+##         0        50        100       150       200       250
+```
+
+```r
+txtplot(wd$ct, wd$NH3_bg, height = 40)
+```
+
+```
+##     +---+---------+---------+---------+---------+---------+----+
+##     |                                                          |
+##     |                                        *                 |
+##     |                                        *                 |
+##     |                                                          |
+##     |                                        *                 |
+##     |                                                          |
+##     |                                         *                |
+## 1.5 +                                                          +
+##     |                                        *                 |
+##     |                                        **                |
+##     |                                                          |
+##     |                                        *                 |
+##     |                                         *                |
+##     |                                                          |
+##     |                                         *                |
+##     |                                         *  *             |
+##     |                                         *  *             |
+##     |                                          * *             |
+##   1 +                                        *    *            +
+##     |            *                       *                     |
+##     |  *                                     *  *              |
+##     |  **                                *  ** ****            |
+##     |  **  **                                  ****            |
+##     |  *    *        *                  **  *    **    *       |
+##     |   *  *         **                  *  *  **      *       |
+##     |  *** **    *   **                 **  *  * ***   **      |
+##     |  * ***    *    **                 **       ***  * *      |
+##     |  * ** *    *    *                   *    **   * * **     |
+## 0.5 +     * *        ***  ***           * ***  *   **** **     +
+##     |       *    * * *** **** **    *     ***     *****   **   |
+##     |       **   * *** * *    **** **     **      *****  ***   |
+##     |        ** *****  ***  ******* **  *  *        * *   **   |
+##     |         * * * *  ***  **  ****    *                      |
+##     |         **       **         ** ****                      |
+##     |          **                  * ***                       |
+##     |          **                      **                      |
+##     |                                                          |
+##     +---+---------+---------+---------+---------+---------+----+
+##         0        50        100       150       200       250
+```
+Compare concentrations after emission.
+
+
+```r
+head(wd[, .(Time, NH3_west, NH3_east, NH3_bg, dNH3_west, dNH3_east, )])
+```
+
+```
+## Error in do_j_names(jsub): Item 7 of the .() or list() passed to j is missing
+```
+
+```r
+tail(wd[, .(Time, NH3_west, NH3_east, NH3_bg, dNH3_west, dNH3_east, )])
+```
+
+```
+## Error in do_j_names(jsub): Item 7 of the .() or list() passed to j is missing
+```
+
+
 
 ```r
 wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west)), ce = mean(na.omit(NH3_east)), cb = mean(na.omit(NH3_bg)))]
@@ -244,6 +407,15 @@ ed[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(cw = mean(na.omit(NH3_west))
 
 ```r
 y <- unlist(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(east = mean(na.omit(NH3_east)), west = mean(na.omit(NH3_west)), bg = mean(na.omit(NH3_bg)))])
+y
+```
+
+```
+##      east      west        bg 
+## 1.2352963 0.9096533 0.5311799
+```
+
+```r
 sb2 <- sd(y)
 sb2
 ```
@@ -251,6 +423,8 @@ sb2
 ```
 ## [1] 0.3523884
 ```
+
+Check for correlation between pre-emission measurements and corrected post-emission values.
 
 
 ```r
@@ -275,6 +449,60 @@ txtplot(x, y)
 ##     +---------+---------------+----------------+---------------+
 ##              0.5              1               1.5              2
 ```
+
+No real correlation here, i.e., no evidence from post-emission period that differences pre-emission reflected long-term bias.
+But also there could still be effects of slurry application, so really we don't know.
+
+Anyway, let's use sd based on corrected values.
+
+
+```r
+y <- unlist(wd[Time >= as.POSIXct('2022-12-04 00:00:00 UTC'), .(east = mean(na.omit(NH3_east_corr)), west = mean(na.omit(NH3_west_corr)), bg = mean(na.omit(NH3_bg)))])
+y
+```
+
+```
+##      east      west        bg 
+## 0.1392963 1.4606533 0.5311799
+```
+
+```r
+sb2 <- sd(y)
+sb2
+```
+
+```
+## [1] 0.6786602
+```
+
+Check for correlation between pre-emission measurements and corrected post-emission values.
+
+
+```r
+txtplot(x, y)
+```
+
+```
+## 1.5 +---------+---------------+----------------+---------------+
+##     |  *                                                       |
+##     |                                                          |
+##     |                                                          |
+##     |                                                          |
+##   1 +                                                          +
+##     |                                                          |
+##     |                                                          |
+##     |                                                          |
+##     |                                                          |
+## 0.5 +                    *                                     +
+##     |                                                          |
+##     |                                                          |
+##     |                                                       *  |
+##     +---------+---------------+----------------+---------------+
+##              0.5              1               1.5              2
+```
+
+Interesting there is a negative correlation there, suggests maybe the correction was too large, not representative, but who knows!
+
 Number of points.
 
 
@@ -291,7 +519,46 @@ Combine sd estimates.
 
 
 ```r
+x
+```
+
+```
+## east west   bg 
+## 1.92 0.27 0.82
+```
+
+```r
+y
+```
+
+```
+##      east      west        bg 
+## 0.1392963 1.4606533 0.5311799
+```
+
+```r
+sb1
+```
+
+```
+## [1] 1.296255
+```
+
+```r
+sb2
+```
+
+```
+## [1] 0.6786602
+```
+
+```r
 sb <- sd(c(x, y))
+sb
+```
+
+```
+## [1] 0.7016497
 ```
 
 TAN application rate (kg N / ha)
@@ -301,25 +568,32 @@ TAN application rate (kg N / ha)
 tan.app <- 67
 ```
 
-Use CE = 3.0, average over 4 days.
+Use CE = 3.03, average over 5 days.
 
 
 ```r
-ce <- 3.0
+ce <- 3.03
 ```
 
-Uncertainty over 4 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
+Uncertainty over 5 days (approximate 95% CI) (micro g / m3 * m / s * s = micro g / m2).
 
-1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 4 = days
+1800 s = dt (0.5 hours), 48 = number of intervals in 1 day, 5 = days
+
+Units below
+
+```
+ micro g NH3 / m3  *  g N / g NH3     * m / s   *    s / int  *  int / d   *   d --> micro g N / m2
+     sb            * 14.0067 / 17.031 * 1/ce    *     1800    *     48     *   5
+```
 
 
 ```r
-u <- 2 * sb / ce * 1800 * 48 * 4
+u <- 2 * sb * 14.0067 / 17.031 / ce * 1800 * 48 * 5
 u
 ```
 
 ```
-## [1] 133496.9
+## [1] 164545.9
 ```
 
 Convert to kg / ha.
@@ -328,6 +602,12 @@ Convert to kg / ha.
 * 1E3 g / kg
 * 1E4 m2 / ha
 
+Units:
+
+```
+micro g / m2 *  g / micro g * kg / g  *   m2 / ha --> kg/ha  
+     u       *  1/1E6       *  1/1E3  *   1E4      
+```
 
 
 ```r
@@ -336,7 +616,7 @@ u2
 ```
 
 ```
-## [1] 1.334969
+## [1] 1.645459
 ```
 
 Express as % of applied TAN
@@ -348,7 +628,7 @@ u3
 ```
 
 ```
-## [1] 1.992491
+## [1] 2.455909
 ```
 
 Now, for the relative reductions, we might again consider that simultaneous extremes are unlikely.
@@ -361,7 +641,7 @@ cu
 ```
 
 ```
-## [1] 2.817807
+## [1] 3.47318
 ```
 
 But I cannot figure out how to use this, because we want a *relative* not absolute reduction (same problem with DFC results, solved by log transformation).
@@ -370,19 +650,58 @@ So, looking at extremes, we get:
 
 
 ```r
-100 * (1 - (0.3 + u3) / (12 - u3))
+100 * (1 - (0.23 + u3) / (8.77 - u3))
 ```
 
 ```
-## [1] 77.0923
+## [1] 57.46166
 ```
 
 ```r
-100 * (1 - (0.3 - u3) / (12 + u3))
+100 * (1 - (0.23 - u3) / (8.77 + u3))
 ```
 
 ```
-## [1] 112.0957
+## [1] 119.8283
 ```
 
-So 77% to 100% reduction based on emission over 4 days.
+So 57% to 120% (100%) reduction based on emission over 5 days.
+
+While mean is:
+
+
+```r
+100 * (1 - 0.23 / 8.77)
+```
+
+```
+## [1] 97.37742
+```
+
+Try parametric bootstrap approach.
+Convert CI to standard deviation for IN and TH.
+
+
+```r
+s3 <- u3 / 2
+s3
+```
+
+```
+## [1] 1.227955
+```
+
+```r
+eth <- rnorm(10000, mean = 8.77, sd = s3)
+ein <- rnorm(10000, mean = 0.23, sd = s3)
+rred <- 100 * (1 - ein / eth)
+quantile(rred, c(0.05, 0.95))
+```
+
+```
+##        5%       95% 
+##  74.12354 121.05204
+```
+
+That gives a 74% to 121% (100%) range.
+

@@ -104,7 +104,6 @@ msin
 10^msin$conf.int
 ```
 
-
 Now get range from all 4 combinations.
 
 ```{r}
@@ -115,5 +114,20 @@ Gives 80-95% reduction.
 Not very different.
 This is a conservative approach (wide CI).
 
+Try a bootstrap approach instead.
 
+```{r}
+n <- 10000
+red <- rep(NA, n)
+for (i in 1:n) {
+  din <- sample(dat[app.meth == 'IN', cum.emis.perc], 7, replace = TRUE)
+  dth <- sample(dat[app.meth == 'TH', cum.emis.perc], 6, replace = TRUE)
+
+  red[i] <- 100 * (1 - mean(din) / mean(dth))
+}
+
+quantile(red, c(0.05, 0.95))
+```
+
+That's 85% to 93% from bootstrap approach.
 

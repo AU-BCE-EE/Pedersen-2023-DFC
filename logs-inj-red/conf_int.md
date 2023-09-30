@@ -2,7 +2,7 @@
 title: 'Injection reduction confidence interval'
 output: pdf_document
 author: Sasha D. Hafner
-date: "27 September, 2023"
+date: "29 September, 2023"
 ---
 
 Data
@@ -13,20 +13,20 @@ dat
 ```
 
 ```
-##      tk id cum.emis.perc app.meth
-## 1022  C 10      7.391289       IN
-## 1112  C  2      5.759458       IN
-## 1202  C  3      3.031186       IN
-## 1292  C  4      2.563422       IN
-## 1382  C  5      8.318043       IN
-## 1472  C  6      1.473785       IN
-## 1562  C  8      4.143501       IN
-## 1652  C  1     38.050421       TH
-## 1742  C  3     35.638613       TH
-## 1832  C  4     44.470647       TH
-## 1922  C  5     44.120937       TH
-## 2012  C  6     52.382874       TH
-## 2102  C  8     42.150399       TH
+##       V1 tk id cum.emis.perc app.meth
+##  1: 1022  C 10      7.391289       IN
+##  2: 1112  C  2      5.759458       IN
+##  3: 1202  C  3      3.031186       IN
+##  4: 1292  C  4      2.563422       IN
+##  5: 1382  C  5      8.318043       IN
+##  6: 1472  C  6      1.473785       IN
+##  7: 1562  C  8      4.143501       IN
+##  8: 1652  C  1     38.050421       TH
+##  9: 1742  C  3     35.638613       TH
+## 10: 1832  C  4     44.470647       TH
+## 11: 1922  C  5     44.120937       TH
+## 12: 2012  C  6     52.382874       TH
+## 13: 2102  C  8     42.150399       TH
 ```
 
 
@@ -263,7 +263,6 @@ msin
 ## [1] 0.95
 ```
 
-
 Now get range from all 4 combinations.
 
 
@@ -279,5 +278,26 @@ Gives 80-95% reduction.
 Not very different.
 This is a conservative approach (wide CI).
 
+Try a bootstrap approach instead.
 
+
+```r
+n <- 10000
+red <- rep(NA, n)
+for (i in 1:n) {
+  din <- sample(dat[app.meth == 'IN', cum.emis.perc], 7, replace = TRUE)
+  dth <- sample(dat[app.meth == 'TH', cum.emis.perc], 6, replace = TRUE)
+
+  red[i] <- 100 * (1 - mean(din) / mean(dth))
+}
+
+quantile(red, c(0.05, 0.95))
+```
+
+```
+##       5%      95% 
+## 85.39808 92.52482
+```
+
+That's 85% to 93% from bootstrap approach.
 
