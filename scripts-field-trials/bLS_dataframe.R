@@ -27,6 +27,9 @@ bb$treat <- 'bLS'
 # from myg * s^-1* m^-2 to g * min^-1* m^-2
 bb$flux <- as.numeric(bb$emis_NH3_gap) * 10^-6 * 60
 
+# from gNH3 to gN
+bb$flux <- bb$flux * 14.0067 / 17.031
+
 # calculation of total flux over time
 # last point * 30 min (time meas interval) 
 bb$flux.time <- bb$flux * 30
