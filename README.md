@@ -54,7 +54,7 @@ The script `main.R` calls all others.
 Scripts for working with emission measurements and producing plots.
 The script `main.R` calls all others.
 
-## 'scripts-variance'
+## `scripts-variance`
 Scripts for producing the plot in 'plots-variance'. 
 The script 'main.R' calls all others. 
 
