@@ -152,7 +152,7 @@ pflux <- ggplot(df1, aes(elapsed.time, flux.perc, color = in1)) +
   facet_wrap(~ tk1, scale = 'free', ncol = 4) + 
   theme_bw() + 
   scale_color_brewer(palette = 'Set1') + 
-  ylab(expression(paste('TAN (%  ',  min^-1,')'))) + 
+  ylab(expression(paste('Flux (% TAN  ',  min^-1,')'))) + 
   theme(legend.title = element_blank()) + 
   theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.ticks.x = element_blank())
 print(pflux)
