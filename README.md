@@ -16,7 +16,7 @@ The contents of this repo are presented in the following paper:
 
 
 # Overview
-This repo contains (nearly) all the iemission data and data processing scripts needed to produce the emission results presented in the paper listed above.
+This repo contains (nearly) all the emission data and data processing scripts needed to produce the emission results presented in the paper listed above.
 The scripts run in R (<https://www.r-project.org/>) and require several add-on packages.
 These packages are listed in multiple `packages.R` in `script-*` directories.
 Versions of R and packages can be found in two `logs/R-versions-*.txt` files.
@@ -27,6 +27,8 @@ These bLS data processing files include some MATLAB scripts.
 
 # Directory structure
 
+Note that all scripts run in the R environment unless noted (bLS calculations were done in Matlab).
+
 ## `data`
 Emission flux data from all three trial for DFC, WT, and bLS measurements.
 Emission flux data for air exchange rate (AER) test. 
@@ -36,6 +38,12 @@ Data used for plot of model of variation for WT and DFC.
 
 ## `functions`
 Functions used by various scripts.
+
+## `logs-bLS-uncert`
+R package version log (txt file) and bLS uncertainty calculation results from `scripts-bLS-uncert` (md file).
+
+## `logs-inj-red`
+R package version log (txt file) and confidence intervals for injection reduction efficiency (md file) from `scripts-inj-red`.
 
 ## `plots-AER-test`
 Plots produced by scripts in `scripts-AER-test`.
@@ -50,11 +58,22 @@ Plots variance for WT and DFC produced by scripts in `scripts-variance`.
 Scripts on AER test.
 The script `main.R` calls all others.
 
+## `scripts-bLS`
+Matlab scripts for processing bLS data.
+
+## `scripts-bLS-uncert`
+R scripts for bLS uncertainty calculation.
+The calculations can be repeated by running `main.R` in R.
+
+## `scripts-inj-red`
+R scripts for confidence interval calculation on injection efficiency.
+The calculations can be repeated by running `main.R` in R.
+
 ## `scripts-field-trials`
 Scripts for working with emission measurements and producing plots.
 The script `main.R` calls all others.
 
-## 'scripts-variance'
+## `scripts-variance`
 Scripts for producing the plot in 'plots-variance'. 
 The script 'main.R' calls all others. 
 
@@ -69,7 +88,9 @@ This section give the sources of tables, figures, and some statistical results p
 | Paper component          |  Repo source                             |  Repo scripts             |
 |-----------------         |-----------------                         |---------------            |
 |    Figure 4              | `plots-field-trials/flux_weather1.pdf`       | `scripts-field-trials/plot.R` |
-|    Table 4             |           | `scripts-field_trials/DFC_dataframe.R` and `scripts-field_trials/bLS_dataframe.R`      |
+|    Table 4               |           | `scripts-field_trials/DFC_dataframe.R` and `scripts-field_trials/bLS_dataframe.R`      |
 |    Figure 5              | `plots-variance/variance.pdf`      | `scripts-variance/plot.R`   |
-| Figure S14 | `plots-AER-test/AER_test.pdf`                       | `scripts-AER-test/plot.R`|
-| Figure S15  | `plots-AER-test/AER_test_rec.pdf`                    | `scripts-AER-test/plot.R` |
+| Figure S14               | `plots-AER-test/AER_test.pdf`                       | `scripts-AER-test/plot.R`|
+| Figure S15               | `plots-AER-test/AER_test_rec.pdf`                    | `scripts-AER-test/plot.R` |
+| Section 3.3.2 bLS uncertainty   | `logs-bLS-uncert/bLS_uncert.md`            | `scripts-bLS-uncert/bLS_uncert.Rmd` |
+| Section 3.3.2 conf. int.        | `logs-inj-red/conf_int.md`            | `scripts-inj-red/conf_int.Rmd` |
