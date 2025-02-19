@@ -1,19 +1,13 @@
 # Pedersen-2023-DFC
-Data and analysis on dynamic flux chamber (DFC), wind tunnel (WT) and backward Lagrangian Stochastic model (bLS) measurement of ammonia volatilation from field-applied slurry, associated with research paper.
-
-# Published paper
-The work is associated with the following paper: 
-Pedersen, J., Hafner, S. D., Pacholski, A., Karlsson, V. I., Rong, L., Labouriau, R., Kamp, J. N. Evaluation of optimized flux chamber design for measurement af ammonia emission after field application of slurry with full-scale farm machinery. Atmos. Meas. Tech., 17, 4493-4505. 2024. https://doi.org/10.5194/amt-17-4493-2024
+Data and analysis on dynamic flux chamber (DFC), wind tunnel (WT) and backward Lagrangian Stochastic model (bLS) measurement of ammonia volatilation from field-applied slurry, associated with a research paper.
 
 # Maintainer
 Johanna Pedersen.
 Contact information here: <https://www.researchgate.net/profile/Johanna-Pedersen>.
 
 # Published paper
-The contents of this repo are presented in the following paper:
-
-...
-
+The work is associated with the following paper: 
+Pedersen, J., Hafner, S. D., Pacholski, A., Karlsson, V. I., Rong, L., Labouriau, R., Kamp, J. N. Evaluation of optimized flux chamber design for measurement af ammonia emission after field application of slurry with full-scale farm machinery. Atmos. Meas. Tech., 17, 4493-4505. 2024. https://doi.org/10.5194/amt-17-4493-2024
 
 # Overview
 This repo contains (nearly) all the emission data and data processing scripts needed to produce the emission results presented in the paper listed above.
