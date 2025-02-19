@@ -3,10 +3,12 @@ Data and analysis on dynamic flux chamber (DFC), wind tunnel (WT) and backward L
 
 # Maintainer
 Johanna Pedersen.
+
 Contact information here: <https://www.researchgate.net/profile/Johanna-Pedersen>.
 
 # Published paper
 The work is associated with the following paper: 
+
 Pedersen, J., Hafner, S. D., Pacholski, A., Karlsson, V. I., Rong, L., Labouriau, R., Kamp, J. N. Evaluation of optimized flux chamber design for measurement af ammonia emission after field application of slurry with full-scale farm machinery. Atmos. Meas. Tech., 17, 4493-4505. 2024. https://doi.org/10.5194/amt-17-4493-2024
 
 # Overview
